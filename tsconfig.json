@@ -11,10 +11,10 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
+    "rootDir": "./src",
     "outDir": "./dist",
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"] // enables us to use @/..
+      "@/*": ["./src/*"] // enables us to use @/..
     }
   }
 }
