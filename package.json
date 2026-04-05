@@ -17,7 +17,7 @@
     "lint:fix": "eslint --fix 'src/**/*.ts'",
     "lint:error": "eslint --quiet 'src/**/*.ts'",
     "format": "prettier --write 'src/**/*.ts'",
-    "prepare": "cd .. && husky backend/.husky",
+    "prepare": "husky .husky",
     "commit": "cz"
   },
   "engines": {
