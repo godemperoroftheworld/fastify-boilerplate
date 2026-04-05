@@ -14,7 +14,7 @@ export default function loadConfig(): void {
       API_HOST: z.string(),
       API_PORT: z.string(),
     })
-    .loose();
+    .passthrough();
 
   const { error } = schema.safeParse(process.env);
 

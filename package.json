@@ -43,8 +43,8 @@
     "fastify": "^5.8.4",
     "fastify-type-provider-zod": "^6.1.0",
     "lodash": "^4.18.1",
-    "pino": "^10.3.1",
-    "zod": "^4.3.6",
+    "pino": "^9.14.0",
+    "zod": "^3.25.76",
     "zod-prisma-types": "^3.2.4"
   },
   "devDependencies": {
