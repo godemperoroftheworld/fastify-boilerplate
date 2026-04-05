@@ -1,0 +1,64 @@
+// This is your Prisma schema file
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator zod {
+  provider                  = "zod-prisma-types"
+  output                    = "../src/schemas/zod"
+  useMultipleFiles          = true
+  createInputTypes          = false
+  addIncludeType            = false
+  addSelectType             = false
+  createRelationValuesTypes = true
+  createPartialTypes        = true
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum ClothingType {
+  top
+  bottom
+  head
+  shoe
+  accessory
+}
+
+enum OutfitType {
+  monochromatic
+  complementary
+  split_complementary
+  triadic
+}
+
+model Clothes {
+  id        String       @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String
+  name      String
+  type      ClothingType
+  colour    String
+  image     String
+  outfits   Outfit[]     @relation(fields: [outfitIDs], references: [id])
+  outfitIDs String[]     @db.ObjectId
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+}
+
+model Outfit {
+  id         String     @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String
+  name       String
+  type       OutfitType
+  clothes    Clothes[]  @relation(fields: [clothesIDs], references: [id])
+  clothesIDs String[]   @db.ObjectId
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
